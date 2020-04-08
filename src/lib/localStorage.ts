@@ -11,22 +11,6 @@ export const saveGameStateToLocalStorage = (gameState: StoredGameState) => {
 
 export const loadGameStateFromLocalStorage = () => {
   const state = localStorage.getItem(gameStateKey)
+
   return state ? (JSON.parse(state) as StoredGameState) : null
-}
-
-const gameStatKey = 'gameStats'
-
-type StoredGameStats = {
-  distribution: number[]
-  current: number
-  best: number
-}
-
-export const saveStatsToLocalStorage = ( gameStats: StoredGameStats) => {
-  localStorage.setItem(gameStatKey, JSON.stringify(gameStats))
-}
-
-export const loadStatsFromLocalStorage = () => {
-  const stats = localStorage.getItem(gameStatKey)
-  return stats ? (JSON.parse(stats) as StoredGameStats) : null
 }
