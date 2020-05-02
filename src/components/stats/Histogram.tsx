@@ -6,8 +6,7 @@ type Props = {
 }
 
 export const Histogram = ({ gameStats }: Props) => {
-  const winDistribution = gameStats.winDistribution
-  const maxValue = Math.max(...winDistribution)
+  const { totalGames, winDistribution } = gameStats
 
   return (
     <div className="columns-1 justify-left m-2 text-sm">
@@ -15,7 +14,7 @@ export const Histogram = ({ gameStats }: Props) => {
         <Progress
           key={i}
           index={i}
-          size={90 * (value / maxValue)}
+          size={95 * (value / totalGames)}
           label={String(value)}
         />
       ))}
