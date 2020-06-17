@@ -19,7 +19,6 @@ import {
   WORD_NOT_FOUND_MESSAGE,
   CORRECT_WORD_MESSAGE,
 } from './constants/strings'
-import { MAX_WORD_LENGTH, MAX_CHALLENGES } from './constants/numbers'
 import { isWordInWordList, isWinningWord, solution } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
@@ -61,7 +60,7 @@ function App() {
     if (gameWasWon) {
       setIsGameWon(true)
     }
-    if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
+    if (loaded.guesses.length === 6 && !gameWasWon) {
       setIsGameLost(true)
     }
     return loaded.guesses
@@ -104,11 +103,7 @@ function App() {
   }, [isGameWon, isGameLost])
 
   const onChar = (value: string) => {
-    if (
-      currentGuess.length < MAX_WORD_LENGTH &&
-      guesses.length < MAX_CHALLENGES &&
-      !isGameWon
-    ) {
+    if (currentGuess.length < 5 && guesses.length < 6 && !isGameWon) {
       setCurrentGuess(`${currentGuess}${value}`)
     }
   }
@@ -121,7 +116,7 @@ function App() {
     if (isGameWon || isGameLost) {
       return
     }
-    if (!(currentGuess.length === MAX_WORD_LENGTH)) {
+    if (!(currentGuess.length === 5)) {
       setIsNotEnoughLetters(true)
       return setTimeout(() => {
         setIsNotEnoughLetters(false)
@@ -137,11 +132,7 @@ function App() {
 
     const winningWord = isWinningWord(currentGuess)
 
-    if (
-      currentGuess.length === MAX_WORD_LENGTH &&
-      guesses.length < MAX_CHALLENGES &&
-      !isGameWon
-    ) {
+    if (currentGuess.length === 5 && guesses.length < 6 && !isGameWon) {
       setGuesses([...guesses, currentGuess])
       setCurrentGuess('')
 
@@ -150,7 +141,7 @@ function App() {
         return setIsGameWon(true)
       }
 
-      if (guesses.length === MAX_CHALLENGES - 1) {
+      if (guesses.length === 5) {
         setStats(addStatsForCompletedGame(stats, guesses.length + 1))
         setIsGameLost(true)
       }
