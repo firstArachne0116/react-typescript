@@ -3,22 +3,15 @@ import { Cell } from './Cell'
 
 type Props = {
   guess: string
-  revealing?: boolean
 }
 
-export const CompletedRow = ({ guess, revealing }: Props) => {
+export const CompletedRow = ({ guess }: Props) => {
   const statuses = getGuessStatuses(guess)
 
   return (
-    <div className="flex justify-center mb-1 completedRow">
+    <div className="flex justify-center mb-1">
       {guess.split('').map((letter, i) => (
-        <Cell
-          key={i}
-          value={letter}
-          status={statuses[i]}
-          revealing={revealing}
-          completed
-        />
+        <Cell key={i} value={letter} status={statuses[i]} />
       ))}
     </div>
   )

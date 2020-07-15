@@ -6,10 +6,9 @@ import { EmptyRow } from './EmptyRow'
 type Props = {
   guesses: string[]
   currentGuess: string
-  revealing?: boolean
 }
 
-export const Grid = ({ guesses, currentGuess, revealing }: Props) => {
+export const Grid = ({ guesses, currentGuess }: Props) => {
   const empties =
     guesses.length < MAX_CHALLENGES - 1
       ? Array.from(Array(MAX_CHALLENGES - 1 - guesses.length))
@@ -18,11 +17,7 @@ export const Grid = ({ guesses, currentGuess, revealing }: Props) => {
   return (
     <div className="pb-6">
       {guesses.map((guess, i) => (
-        <CompletedRow
-          key={i}
-          guess={guess}
-          revealing={revealing && guesses.length - 1 === i}
-        />
+        <CompletedRow key={i} guess={guess} />
       ))}
       {guesses.length < MAX_CHALLENGES && <CurrentRow guess={currentGuess} />}
       {empties.map((_, i) => (

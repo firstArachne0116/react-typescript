@@ -55,7 +55,6 @@ function App() {
       : false
   )
   const [successAlert, setSuccessAlert] = useState('')
-  const [revealing, setRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
     if (loaded?.solution !== solution) {
@@ -139,8 +138,6 @@ function App() {
       }, ALERT_TIME_MS)
     }
 
-    setRevealing(true)
-
     const winningWord = isWinningWord(currentGuess)
 
     if (
@@ -189,11 +186,7 @@ function App() {
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
-      <Grid
-        guesses={guesses}
-        currentGuess={currentGuess}
-        revealing={revealing}
-      />
+      <Grid guesses={guesses} currentGuess={currentGuess} />
       <Keyboard
         onChar={onChar}
         onDelete={onDelete}
@@ -234,16 +227,11 @@ function App() {
         message={WORD_NOT_FOUND_MESSAGE}
         isOpen={isWordNotFoundAlertOpen}
       />
-      <Alert
-        message={CORRECT_WORD_MESSAGE(solution)}
-        isOpen={isGameLost}
-        delay
-      />
+      <Alert message={CORRECT_WORD_MESSAGE(solution)} isOpen={isGameLost} />
       <Alert
         message={successAlert}
         isOpen={successAlert !== ''}
         variant="success"
-        delay
       />
     </div>
   )
