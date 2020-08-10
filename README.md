@@ -44,6 +44,7 @@ Open [http://localhost:3000](http://localhost:3000) in browser.
 - [Malay](https://malay-wordle.netlify.app/): Bahasa Malaysia
 - [ਪੰਜਾਬੀ](https://punjabipuzzle.netlify.app/): Punjabi
 - [Слівце](https://slivce.com/): Ukrainian
+- [Keclap](https://keclap.xyz/): Sundanese
 
 ### Fun themes
 
@@ -57,7 +58,6 @@ Open [http://localhost:3000](http://localhost:3000) in browser.
 - ['en si lì'ur](https://tirea.learnnavi.org/wordle): Na'vi, the constructed language from James Cameron's AVATAR (2009)
 - [Wordle.cl](https://www.wordle.cl): Chilean modisms, cities, places
 - [Anidal](https://anidal-abrarhayat.web.app/): Animals
-- [FFXIVrdle](https://ffxivrdle.com/): Final Fantasy XIV
 
 ### Math, Acronyms, Science, Tech, and more
 
