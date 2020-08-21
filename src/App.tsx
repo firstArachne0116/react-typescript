@@ -1,7 +1,10 @@
 import {
   InformationCircleIcon,
   ChartBarIcon,
-  CogIcon,
+  SunIcon,
+  MoonIcon,
+  CakeIcon,
+  AcademicCapIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
@@ -10,7 +13,6 @@ import { Keyboard } from './components/keyboard/Keyboard'
 import { AboutModal } from './components/modals/AboutModal'
 import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
-import { SettingsModal } from './components/modals/SettingsModal'
 import {
   GAME_TITLE,
   WIN_MESSAGES,
@@ -52,7 +54,6 @@ function App() {
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
-  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(
@@ -212,6 +213,28 @@ function App() {
         <h1 className="text-xl ml-2.5 grow font-bold dark:text-white">
           {GAME_TITLE}
         </h1>
+        {isHardMode ? (
+          <AcademicCapIcon
+            className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+            onClick={() => handleHardMode(!isHardMode)}
+          />
+        ) : (
+          <CakeIcon
+            className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+            onClick={() => handleHardMode(!isHardMode)}
+          />
+        )}
+        {isDarkMode ? (
+          <SunIcon
+            className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white sun"
+            onClick={() => handleDarkMode(!isDarkMode)}
+          />
+        ) : (
+          <MoonIcon
+            className="h-6 w-6 mr-2 cursor-pointer theme-switcher moon"
+            onClick={() => handleDarkMode(!isDarkMode)}
+          />
+        )}
         <InformationCircleIcon
           className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
           onClick={() => setIsInfoModalOpen(true)}
@@ -219,10 +242,6 @@ function App() {
         <ChartBarIcon
           className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsStatsModalOpen(true)}
-        />
-        <CogIcon
-          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
-          onClick={() => setIsSettingsModalOpen(true)}
         />
       </div>
       <Grid
@@ -257,14 +276,6 @@ function App() {
       <AboutModal
         isOpen={isAboutModalOpen}
         handleClose={() => setIsAboutModalOpen(false)}
-      />
-      <SettingsModal
-        isOpen={isSettingsModalOpen}
-        handleClose={() => setIsSettingsModalOpen(false)}
-        isHardMode={isHardMode}
-        handleHardMode={handleHardMode}
-        isDarkMode={isDarkMode}
-        handleDarkMode={handleDarkMode}
       />
 
       <button
