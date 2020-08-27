@@ -23,14 +23,8 @@ export const generateEmojiGrid = (guesses: string[]) => {
         .map((_, i) => {
           switch (status[i]) {
             case 'correct':
-              if (localStorage.getItem('contrast') === 'high') {
-                return '🟧'
-              }
               return '🟩'
             case 'present':
-              if (localStorage.getItem('contrast') === 'high') {
-                return '🟦'
-              }
               return '🟨'
             default:
               if (localStorage.getItem('theme') === 'dark') {
