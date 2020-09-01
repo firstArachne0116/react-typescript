@@ -1,6 +1,7 @@
 import { CharStatus } from '../../lib/statuses'
 import classnames from 'classnames'
 import { REVEAL_TIME_MS } from '../../constants/settings'
+import { getStoredIsHighContrastMode } from '../../lib/localStorage'
 
 type Props = {
   value?: string
@@ -29,10 +30,14 @@ export const Cell = ({
       'border-black dark:border-slate-100': value && !status,
       'absent shadowed bg-slate-400 dark:bg-slate-700 text-white border-slate-400 dark:border-slate-700':
         status === 'absent',
+      'correct shadowed bg-orange-500 text-white border-orange-500':
+        status === 'correct' && getStoredIsHighContrastMode(),
+      'present shadowed bg-cyan-500 text-white border-cyan-500':
+        status === 'present' && getStoredIsHighContrastMode(),
       'correct shadowed bg-green-500 text-white border-green-500':
-        status === 'correct',
+        status === 'correct' && !getStoredIsHighContrastMode(),
       'present shadowed bg-yellow-500 text-white border-yellow-500':
-        status === 'present',
+        status === 'present' && !getStoredIsHighContrastMode(),
       'cell-fill-animation': isFilled,
       'cell-reveal': shouldReveal,
     }
